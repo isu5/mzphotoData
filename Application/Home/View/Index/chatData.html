@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>导出数据</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="stylesheet" href="__LAY__/css/layui.css"  media="all">
+  <style>
+	#datatable {
+		border: 1px solid #ccc;
+		border-collapse: collapse;
+		border-spacing: 0;
+		font-size: 12px;
+	}
+	td,th {
+		border: 1px solid #ccc;
+		padding: 4px 20px;
+	}
+
+  
+  </style>
+  <!-- 注意：如果你直接复制所有代码到本地，上述css路径需要改成你本地的 -->
+</head>
+<body>
+<div class="layui-container">  
+  <div class="layui-row">
+    <div class="layui-col-md7">
+      &nbsp;
+    </div>
+    <div class="layui-col-md5">
+     <form class="layui-form" action="{:U('Index/chatData')}"  method="post">
+		<div class="layui-form-item">
+			<label class="layui-form-label">年度筛选</label>
+			<div class="layui-input-inline" style="margin:0 50px 0 20px">
+				<select name="excel" lay-verify="" lay-filter="filter" id="excel" >
+					<option value="0" <if condition="$excel eq 0">selected="selected"</if>>全部数据</option>
+					<option value="1" <if condition="$excel eq 1">selected="selected"</if>>2015年数据</option>
+					<option value="2" <if condition="$excel eq 2">selected="selected"</if>>2016年数据</option>
+					<option value="3" <if condition="$excel eq 3">selected="selected"</if>>2017年数据</option>
+					<option value="4" <if condition="$excel eq 4">selected="selected"</if>>2018年数据</option>
+					<option value="5" <if condition="$excel eq 5">selected="selected"</if>>2019年数据</option>
+					<option value="6" <if condition="$excel eq 6">selected="selected"</if>>2020年数据</option>
+					<option value="7" <if condition="$excel eq 7">selected="selected"</if>>2021年数据</option>
+					<option value="8" <if condition="$excel eq 8">selected="selected"</if>>2022年数据</option>
+				</select>        	
+			</div>
+			<button type="submit" id="submit" class="layui-btn layui-btn-normal">查询</button>
+		</div>
+		
+	</form>
+    </div>
+  </div>
+<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+
+        
+<table class="layui-table" id="datatable">
+	<thead>
+		<tr>
+			<th lay-data="{field:'username', width:100}">公司</th>
+			<th lay-data="{field:'experience', width:80, sort:true}">全部照片上传数量</th>
+		</tr>
+	
+	</thead>
+	<tbody>
+	<empty name="data">
+		<tr>
+			<td style="color:red;font-weight:700">您搜索的年度没有数据</td>
+		</tr>
+    <else/>
+	<volist name="data" id="v">
+		<tr>
+		  <td>{$v.group_name}</td>
+		  <td>{$v.conn}</td>
+		</tr>
+	</volist>
+	</empty>
+	
+  </tbody>
+</table>
+              
+          
+<script src="__LAY__/layui.js" charset="utf-8"></script>
+<script src="__LAY__/jquery.js" charset="utf-8"></script>
+<script src="__LAY__/highcharts.js" charset="utf-8"></script>
+<script src="__LAY__/exporting.js" charset="utf-8"></script>
+<script src="__LAY__/data.js" charset="utf-8"></script>
+<script src="__LAY__/highcharts-zh_CN.js" charset="utf-8"></script>
+ 
+<script>
+layui.use(['jquery', 'form'], function(){
+	var $ = layui.$ //重点处
+	,form = layui.form;
+	
+});
+$(function () {
+    $('#container').highcharts({
+        data: {
+            table: 'datatable'
+        },
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: '从 HTML 表格中提取数据并生成图表'
+        },
+        yAxis: {
+            allowDecimals: false,
+            title: {
+                text: '个',
+                rotation: 0
+            }
+        },
+        tooltip: {
+            formatter: function () {
+                return '<b>' + this.series.name + '</b><br/>' +
+                    this.point.y + ' 个' + this.point.name.toLowerCase();
+            }
+        },
+		credits: {
+            enabled: false
+        },
+		 exporting: {
+            enabled: false
+        }
+    });
+	
+	$('#submit').click(function(){
+		var opt = $('#excel').val();
+		var optxt = $('#excel').find("option:selected").text();
+
+		$.post("{:U('Index/index')}", {excel:opt},function(data){
+			console.log(data);
+			//$('#excel option[text='+optxt+']').attr("selected", true)
+		});
+			
+	})
+});
+</script>
+
+</body>
+</html>
