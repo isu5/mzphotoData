@@ -126,7 +126,7 @@ class IndexController extends Controller {
 		}else{
 			$this->assign('excel' , $excel);
 			$title = array('基层公司','照片上传数量'); //设置要导出excel的表头
-			exportExcel($arr, '媒资系统2016照片上传数量统计', $title);
+			exportExcel($arr, '媒资系统2017照片上传数量统计', $title);
 		}
 	}
 	//导出2018年数据
@@ -157,7 +157,7 @@ class IndexController extends Controller {
 		}else{
 			$this->assign('excel' , $excel);
 			$title = array('基层公司','照片上传数量'); //设置要导出excel的表头
-			exportExcel($arr, '媒资系统2016照片上传数量统计', $title);
+			exportExcel($arr, '媒资系统2018照片上传数量统计', $title);
 		}
 	}
 	//导出2019年数据
@@ -188,7 +188,7 @@ class IndexController extends Controller {
 		}else{
 			$this->assign('excel' , $excel);
 			$title = array('基层公司','照片上传数量'); //设置要导出excel的表头
-			exportExcel($arr, '媒资系统2016照片上传数量统计', $title);
+			exportExcel($arr, '媒资系统2019照片上传数量统计', $title);
 		}
 	}
 	//导出2020年数据
@@ -219,7 +219,7 @@ class IndexController extends Controller {
 		}else{
 			$this->assign('excel' , $excel);
 			$title = array('基层公司','照片上传数量'); //设置要导出excel的表头
-			exportExcel($arr, '媒资系统2016照片上传数量统计', $title);
+			exportExcel($arr, '媒资系统2020照片上传数量统计', $title);
 		}
 	}
 	//导出2021年数据
@@ -250,7 +250,7 @@ class IndexController extends Controller {
 		}else{
 			$this->assign('excel' , $excel);
 			$title = array('基层公司','照片上传数量'); //设置要导出excel的表头
-			exportExcel($arr, '媒资系统2016照片上传数量统计', $title);
+			exportExcel($arr, '媒资系统2021照片上传数量统计', $title);
 		}
 	}
 	//导出2022年数据
@@ -281,7 +281,7 @@ class IndexController extends Controller {
 		}else{
 			$this->assign('excel' , $excel);
 			$title = array('基层公司','照片上传数量'); //设置要导出excel的表头
-			exportExcel($arr, '媒资系统2016照片上传数量统计', $title);
+			exportExcel($arr, '媒资系统2022照片上传数量统计', $title);
 		}
 	}
 	//导出全部数据表格
@@ -305,7 +305,7 @@ class IndexController extends Controller {
 		}else{
 			$this->assign('excel' , $excel);
 			$title = array('基层公司','照片上传数量'); //设置要导出excel的表头
-			exportExcel($arr, '媒资系统'.$map.'照片上传数量统计', $title);
+			exportExcel($arr, '媒资系统全部照片上传数量统计', $title);
 		}
 		
 	}
